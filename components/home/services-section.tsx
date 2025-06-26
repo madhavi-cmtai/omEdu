@@ -185,8 +185,20 @@ export default function ServiceShowcase() {
                                     animate={{ opacity: 1, y: 0 }}
                                     exit={{ opacity: 0, y: -20 }}
                                     transition={{ duration: 0.4 }}
-                                    className="rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:shadow-lg transition-all bg-white"
+                                    className="rounded-2xl overflow-hidden  transition-all bg-white"
+                                    style={{
+                                        boxShadow: "0 10px 40px rgba(250, 2, 20, 0.3)",
+                                    }}
+                                    onMouseEnter={(e) =>
+                                    (e.currentTarget.style.boxShadow =
+                                        "0 12px 48px rgba(172, 2, 20, 0.4)")
+                                    }
+                                    onMouseLeave={(e) =>
+                                    (e.currentTarget.style.boxShadow =
+                                        "0 10px 40px rgba(172, 2, 20, 0.3)")
+                                    }
                                 >
+                              
                                     <Link href={`/services/${service.slug}`}>
                                         <div className="relative w-full h-60">
                                             <Image
@@ -204,7 +216,7 @@ export default function ServiceShowcase() {
                                                 {service.desc}
                                             </p>
                                             <div className="flex justify-end">
-                                                <span className="text-[var(--primary-pink)] hover:text-[var(--primary-red)] hover:underline text-sm font-medium transition">
+                                                <span className="text-[#790F1B] hover:text-[var(--primary-red)] hover:underline text-sm font-medium transition">
                                                     Read More →
                                                 </span>
                                             </div>

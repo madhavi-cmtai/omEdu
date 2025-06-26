@@ -50,7 +50,7 @@ export default function AboutSection() {
                     <motion.a
                         whileHover={{ scale: 1.05 }}
                         href="/about"
-                        className="inline-block px-6 py-3 rounded-full text-white text-base font-medium shadow-lg transition bg-[var(--primary-pink)] hover:bg-[var(--primary-red)]"
+                        className="inline-block px-6 py-3 rounded-full text-white text-base font-medium shadow-lg transition bg-[var(--primary-green)] hover:bg-[#AC0214]"
                     >
                         Learn More About Us
                     </motion.a>

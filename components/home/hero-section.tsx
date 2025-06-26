@@ -28,7 +28,7 @@ export default function HeroSection() {
 
                     {/* Buttons */}
                     <div className="mt-8 flex flex-wrap gap-4">
-                        <button className="bg-[var(--primary-gold)] text-[var(--primary-green)] font-semibold px-6 py-3 rounded-md">
+                        <button className="bg-white text-[var(--primary-green)] font-semibold px-6 py-3 rounded-md">
                             Explore Services
                         </button>
                         <button className="border border-white text-white font-semibold px-6 py-3 rounded-md bg-[var(--primary-green)]">

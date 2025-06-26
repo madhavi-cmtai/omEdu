@@ -38,8 +38,8 @@ export default function WhyChooseUs() {
             title: "Innovative Solutions",
             description:
                 "We embrace modern technologies and creative thinking to solve complex challenges delivering results that are both practical and forward-looking.",
-            icon: "/images/whyChooseUs/innovation.jpg", 
-        }
+            icon: "/images/whyChooseUs/innovation.jpg",
+        },
     ];
 
     return (
@@ -59,7 +59,19 @@ export default function WhyChooseUs() {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="group flex flex-col sm:flex-row bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                            style={{
+                                boxShadow: "0 10px 40px rgba(221, 15, 27, 0.5)",
+                                transition: "box-shadow 0.3s ease",
+                            }}
+                            onMouseEnter={(e) =>
+                            (e.currentTarget.style.boxShadow =
+                                "0 6px 24px rgba(121, 15, 27, 0.4)")
+                            }
+                            onMouseLeave={(e) =>
+                            (e.currentTarget.style.boxShadow =
+                                "0 4px 20px rgba(121, 15, 27, 0.3)")
+                            }
+                            className="group flex flex-col sm:flex-row bg-white rounded-2xl border border-gray-200 overflow-hidden"
                         >
                             {/* Image */}
                             <div className="sm:w-1/3 w-full h-[220px] relative">

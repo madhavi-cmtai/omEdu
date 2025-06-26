@@ -7,8 +7,9 @@
   --primary-red: #F26868;
   --primary-gold: #CC9D1C;
   --primary-pink: #FDC5BF;
-  --primary-green:#02386E;
-  --primary-grey: #667255;
+  --primary-green:#790F1B;
+  --primary-brown:#790F1B
+  --primary-grey: #AC0214;
   --font-main: var(--font-montserrat, 'Montserrat', Arial, Helvetica, sans-serif);
   --radius: 0.625rem;
   --background: oklch(1 0 0);

@@ -1,87 +1,71 @@
 "use client";
 
-import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
 
 const navLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
     { name: "Services", href: "/services" },
-    { name: "Contact", href: "/contact" },
+    { name: "Projects", href: "/projects" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "Contact Us", href: "/contact" },
 ];
 
-const Header = () => {
+export default function Header() {
     const pathname = usePathname();
-    const [menuOpen, setMenuOpen] = useState(false);
 
     return (
-        <header className="bg-white shadow-md sticky top-0 z-50 border-b border-[#e3061320]">
-            <div className="max-w-7xl mx-auto px-4 flex items-center justify-between py-3">
-                {/* Logo */}
-                <Link href="/" className="inline-flex items-center">
-                    <Image
-                        src="/images/om-educom-logo.png" 
-                        alt="OM Educom Logo"
-                        width={120}
-                        height={50}
-                        className="object-contain rounded"
-                    />
-                </Link>
+        <header className="w-full px-6 md:px-12 py-2 flex items-center justify-between shadow-sm bg-white">
+            {/* Left: Logo */}
+            <Link href="/" className="flex items-center gap-2">
+                <Image
+                    src="/logo.png"
+                    alt="Logo"
+                    width={40}
+                    height={40}
+                    className="object-contain"
+                />
+            </Link>
 
-                {/* Desktop Navigation */}
-                <nav className="hidden md:flex gap-6 items-center font-semibold text-[16px]">
-                    {navLinks.map((link) => {
-                        const isActive = pathname === link.href;
-                        return (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className={`px-3 py-1 rounded-md transition-colors ${isActive
-                                        ? "text-[var(--primary-red)] font-bold"
-                                        : "text-[var(--primary-green)] hover:text-[var(--primary-red)] hover:bg-[#fff1e6]"
-                                    }`}
-                            >
-                                {link.name}
-                            </Link>
-                        );
-                    })}
-                </nav>
+            {/* Center: Navigation */}
+            <nav className="hidden md:flex gap-15 ml-52">
+                {navLinks.map((link) => {
+                    const isActive = pathname === link.href;
+                    return (
+                        <Link
+                            key={link.name}
+                            href={link.href}
+                            className={`relative text-base font-bold transition-colors duration-300 ${isActive
+                                    ? "text-[#790F1B] font-extrabold underline underline-offset-4"
+                                    : "text-black hover:text-[#AC0214] hover:underline underline-offset-4"
+                                }`}
+                        >
+                            {link.name}
+                        </Link>
 
-                {/* Mobile Menu Toggle */}
-                <button
-                    className="md:hidden text-[var(--primary-red)]"
-                    onClick={() => setMenuOpen(!menuOpen)}
+                    );
+                })}
+            </nav>
+
+            {/* Right: CTA Button */}
+            <div>
+                <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 text-white font-bold text-base px-7 py-4 rounded-full bg-gradient-to-r from-[#9b1c2f] to-[#ff6b6b] hover:from-[#b6203a] hover:to-[#ff4c4c] transition-shadow shadow-lg mr-2"
                 >
-                    {menuOpen ? <X size={26} /> : <Menu size={26} />}
-                </button>
+                    <Image
+                        src="/images/vector.png"
+                        alt="Call Icon"
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                    />
+                    Contact Us
+                </Link>
             </div>
-
-            {/* Mobile Navigation */}
-            {menuOpen && (
-                <div className="md:hidden bg-white px-4 py-3 border-t border-[#e3061320]">
-                    {navLinks.map((link) => {
-                        const isActive = pathname === link.href;
-                        return (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                onClick={() => setMenuOpen(false)}
-                                className={`block py-2 text-base font-semibold ${isActive
-                                        ? "text-[var(--primary-red)]"
-                                        : "text-[var(--primary-green)] hover:text-[var(--primary-gold)]"
-                                    }`}
-                            >
-                                {link.name}
-                            </Link>
-                        );
-                    })}
-                </div>
-            )}
         </header>
-    );
-};
 
-export default Header;
+    );
+}
