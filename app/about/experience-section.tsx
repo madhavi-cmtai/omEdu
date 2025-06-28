@@ -58,7 +58,7 @@ export default function ExperienceSection() {
                                     } relative`}
                             >
                                 {/* Dot on line */}
-                                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[var(--primary-pink)] border-4 border-white shadow z-10" />
+                                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[var(--primary-red)] border-4 border-white shadow z-10" />
                                 <div
                                     className={`w-full sm:w-1/2 ${isLeft ? "sm:pr-12 text-right" : "sm:pl-12 text-left"
                                         }`}

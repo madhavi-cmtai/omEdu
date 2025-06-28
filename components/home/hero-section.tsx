@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 
 export default function HeroSection() {
     return (
-        <section className="bg-[var(--primary-green)] py-16 px-6 md:px-12 lg:px-20">
+        <section className="bg-[var(--primary-green)] py-16 px-6 md:px-12 lg:px-20 mt-16">
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10">
                 {/* Left Content */}
                 <div className="flex-1 text-white">
@@ -28,10 +28,10 @@ export default function HeroSection() {
 
                     {/* Buttons */}
                     <div className="mt-8 flex flex-wrap gap-4">
-                        <button className="bg-white text-[var(--primary-green)] font-semibold px-6 py-3 rounded-md">
+                        <button className="bg-white text-[var(--primary-green)] hover:bg-[var(--primary-red)] hover:text-white  font-semibold px-6 py-3 rounded-md">
                             Explore Services
                         </button>
-                        <button className="border border-white text-white font-semibold px-6 py-3 rounded-md bg-[var(--primary-green)]">
+                        <button className="border border-white text-white font-semibold px-6 py-3 rounded-md bg-[var(--primary-green)] hover:bg-white hover:text-[var(--primary-red)]">
                             Contact Us
                         </button>
                     </div>

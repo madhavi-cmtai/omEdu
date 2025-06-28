@@ -4,11 +4,11 @@
 @custom-variant dark (&:is(.dark *));
 
 :root { /* White background */
-  --primary-red: #F26868;
+  --primary-red: #AC0214;
   --primary-gold: #CC9D1C;
   --primary-pink: #FDC5BF;
   --primary-green:#790F1B;
-  --primary-brown:#790F1B
+  --primary-brown:#790F1B;
   --primary-grey: #AC0214;
   --font-main: var(--font-montserrat, 'Montserrat', Arial, Helvetica, sans-serif);
   --radius: 0.625rem;
@@ -44,6 +44,37 @@
   --sidebar-border: oklch(0.929 0.013 255.508);
   --sidebar-ring: oklch(0.704 0.04 256.788);
 }
+
+.btn-sweep::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-20deg);
+}
+
+.btn-sweep:hover::before {
+  animation: sweep 0.8s ease forwards;
+}
+
+@keyframes sweep {
+  from {
+    left: -75%;
+  }
+  to {
+    left: 125%;
+  }
+}
+
+
 
 :root {
   --background: #ffffff;

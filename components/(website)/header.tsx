@@ -10,27 +10,26 @@ const navLinks = [
     { name: "Services", href: "/services" },
     { name: "Projects", href: "/projects" },
     { name: "Blogs", href: "/blogs" },
-    { name: "Contact Us", href: "/contact" },
 ];
 
 export default function Header() {
     const pathname = usePathname();
 
     return (
-        <header className="w-full px-6 md:px-12 py-2 flex items-center justify-between shadow-sm bg-white">
+        <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-md py-4 px-6 md:px-12 flex items-center justify-between transition-all duration-300">
             {/* Left: Logo */}
             <Link href="/" className="flex items-center gap-2">
                 <Image
                     src="/logo.png"
                     alt="Logo"
-                    width={40}
-                    height={40}
+                    width={48}
+                    height={48}
                     className="object-contain"
                 />
             </Link>
 
             {/* Center: Navigation */}
-            <nav className="hidden md:flex gap-15 ml-52">
+            <nav className="hidden md:flex gap-15 ml-50">
                 {navLinks.map((link) => {
                     const isActive = pathname === link.href;
                     return (
@@ -44,7 +43,6 @@ export default function Header() {
                         >
                             {link.name}
                         </Link>
-
                     );
                 })}
             </nav>
@@ -53,7 +51,7 @@ export default function Header() {
             <div>
                 <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 text-white font-bold text-base px-7 py-4 rounded-full bg-gradient-to-r from-[#9b1c2f] to-[#ff6b6b] hover:from-[#b6203a] hover:to-[#ff4c4c] transition-shadow shadow-lg mr-2"
+                    className="inline-flex items-center gap-2 text-white font-bold text-base px-6 py-3 rounded-full bg-gradient-to-r from-[#9b1c2f] to-[#ff6b6b] hover:from-[#b6203a] hover:to-[#ff4c4c] transition-shadow shadow-lg"
                 >
                     <Image
                         src="/images/vector.png"
@@ -66,6 +64,5 @@ export default function Header() {
                 </Link>
             </div>
         </header>
-
     );
 }

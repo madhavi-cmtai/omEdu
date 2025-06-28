@@ -1,188 +1,243 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
 import ExperienceSection from "./experience-section";
+import AboutSection from "@/components/home/about-section";
+import Link from "next/link";
 
-
+function useCountAnimation(start: number, end: number, duration: number) {
+    const [count, setCount] = useState(start);
+    useEffect(() => {
+        let startTime: number | null = null;
+        const step = (timestamp: number) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            const value = Math.floor(progress * (end - start) + start);
+            setCount(value);
+            if (progress < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+    }, [start, end, duration]);
+    return count;
+}
 
 export default function AboutPage() {
+    const counterRef = useRef(null);
+    const isInView = useInView(counterRef, { once: false });
+
+    const expCount = useCountAnimation(isInView ? 0 : 0, isInView ? 9 : 0, 1000);
+    const servCount = useCountAnimation(isInView ? 0 : 0, isInView ? 22 : 0, 1000);
+    const peopleCount = useCountAnimation(isInView ? 10 : 10, isInView ? 1000 : 10, 1200);
+
     return (
-        <div className="min-h-screen bg-white px-4 sm:px-8 py-16 max-w-6xl mx-auto">
-            {/* Heading */}
-            <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="text-4xl sm:text-5xl font-bold text-center mb-8 text-[var(--primary-green)]"
+        <>
+            {/* ✅ Hero Section */}
+            <section
+                className="relative w-full min-h-[80vh] bg-cover bg-center flex flex-col-reverse lg:flex-row items-center justify-between text-white overflow-hidden mt-16"
+                style={{ backgroundImage: "url('/images/banner/about-hero.jpg')" }}
             >
-                About OM Educom
-            </motion.h1>
-
-            <Separator className="mb-12 bg-[var(--primary-pink)] h-[2px]" />
-
-            {/* Paragraph 1 */}
-            <motion.div
-                className="text-lg text-gray-700 leading-relaxed mb-10 sm:px-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-            >
-                <p className="mb-6">
-                    <strong>OM Educom</strong> is a leading multidisciplinary engineering and architectural consultancy firm based in Tezpur, Assam. For nearly a decade, we have delivered tailored, reliable, and future-ready solutions to public and private sector clients across the region.
-                </p>
-
-                <p>
-                    Our firm thrives on transforming complex ideas into sustainable infrastructure. From community housing and urban development to institutional planning and structural redesign—we’re known for our versatility, dedication, and innovation.
-                </p>
-            </motion.div>
-
-            {/* Image in between */}
-            <motion.div
-                className="my-12 rounded-2xl overflow-hidden shadow-xl"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8 }}
-            >
-                <Image
-                    src="/images/about-om.jpg"
-                    alt="OM Educom office or project"
-                    width={1200}
-                    height={500}
-                    className="w-full h-auto object-cover"
+                <div className="absolute inset-0 bg-[var(--primary-brown)] bg-opacity-40 z-10" />
+                <div
+                    className="absolute inset-0 z-20 hidden sm:block"
+                    style={{
+                        clipPath: 'polygon(100% 0%, 70% 0%, 80% 100%, 100% 100%)',
+                        backgroundColor: '#D91111',
+                    }}
                 />
-            </motion.div>
+                <div className="absolute z-30 right-4 sm:right-[7%] top-1/2 transform -translate-y-1/2 w-[240px] sm:w-[380px] md:w-[480px] lg:w-[580px]">
+                    <Image
+                        src="/images/about/about.webp"
+                        alt="Junction Graphic"
+                        width={580}
+                        height={480}
+                        className="w-full h-auto drop-shadow-lg"
+                    />
+                </div>
+                <div className="relative z-30 px-4 sm:px-10 max-w-3xl text-left mt-20 lg:mt-0 ml-0 sm:ml-10 lg:ml-16">
+                    <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold leading-[1.05] mb-4">
+                        <div>Building Futures,</div>
+                        <div className="text-[var(--primary-gold)]">Empowering</div>
+                        <div>Communities</div>
+                    </h2>
+                    <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-6">
+                        OM Educom is more than a consultancy we're a team of passionate engineers, architects, and strategists shaping the landscape of North East India with precision and purpose.
+                    </p>
+                    <Link
+                        href="/services"
+                        className="mt-6 inline-flex items-center gap-2 px-6 py-3 bg-white text-[var(--primary-brown)] font-semibold rounded-md shadow-md hover:bg-[var(--primary-red)] hover:text-white transition-colors duration-300"
+                    >
+                        Explore Our Services
+                        <span className="inline-block transform transition-transform group-hover:translate-x-1">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-5 h-5"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                                strokeWidth={2}
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                            </svg>
+                        </span>
+                    </Link>
+                </div>
+            </section>
 
-            {/* Paragraph 2 */}
-            <motion.div
-                className="text-lg text-gray-700 leading-relaxed mb-10 sm:px-2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.8 }}
-            >
-                <p className="mb-6">
-                    Our integrated team includes civil engineers, architects, project consultants, and business strategists—each contributing unique expertise to ensure quality delivery and long-term project sustainability.
-                </p>
+            <AboutSection />
 
-                <p>
-                    We bring together traditional values and modern tools like BIM, GIS, and drone surveying to ensure that each design is smart, functional, and built to last. Our strength lies not just in execution, but in collaboration with stakeholders and communities.
-                </p>
-            </motion.div>
+            {/* ✅ Image + Boxes + Text Section */}
+            <section className="py-20 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-8">
+                    <div className="grid md:grid-cols-2 items-start gap-12" ref={counterRef}>
+                        {/* Left Column: Image + Boxes */}
+                        <div>
+                            <motion.div
+                                initial={{ opacity: 0, x: -40 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.8 }}
+                                className="rounded-2xl overflow-hidden shadow-xl mt-5"
+                            >
+                                <Image
+                                    src="/images/about/about-section2.jpg"
+                                    alt="OM Educom office or project"
+                                    width={600}
+                                    height={450}
+                                    className="w-full h-auto object-cover"
+                                />
+                            </motion.div>
+                        </div>
 
-            {/* Mission + Vision Cards */}
-            <div className="grid md:grid-cols-2 gap-8 mt-12">
-                <motion.div
-                    initial={{ opacity: 0, x: -40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <Card className="shadow-xl" >
-                        <CardContent className="p-6 space-y-4">
-                            <h2 className="text-2xl font-bold text-[var(--primary-green)]">Our Mission</h2>
-                            <p>
-                                We strive to empower progress by delivering world-class consulting services in engineering and architecture. Our mission is to guide projects that are efficient, sustainable, and aligned with the evolving needs of people and places.
-                            </p>
-                        </CardContent>
-                    </Card>
-                </motion.div>
+                        {/* Right Column: Content */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="space-y-6"
+                        >
+                            <h1 className="text-3xl sm:text-5xl font-bold text-[var(--primary-brown)]">
+                                Transforming Vision into Reality
+                            </h1>
 
-                <motion.div
-                    initial={{ opacity: 0, x: 40 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6 }}
-                >
-                    <Card className="shadow-xl" >
-                        <CardContent className="p-6 space-y-4">
-                            <h2 className="text-2xl font-bold text-[var(--primary-green)]">Our Vision</h2>
-                            <p>
-                                To be North East India’s most respected consultancy, building spaces and systems that elevate communities, support sustainability, and drive future-focused development for generations to come.
-                            </p>
-                        </CardContent>
-                    </Card>
-                </motion.div>
-            </div>
+                            <div className="text-lg text-gray-700 leading-relaxed space-y-6">
+                                <p>
+                                    Our firm thrives on transforming complex ideas into sustainable infrastructure. From community housing and urban development to institutional planning and structural redesign—we’re known for our versatility, dedication, and innovation.
+                                </p>
+                                <p>
+                                    Our integrated team includes civil engineers, architects, project consultants, and business strategists—each contributing unique expertise to ensure quality delivery and long-term project sustainability.
+                                </p>
+                                <p>
+                                    We bring together traditional values and modern tools like BIM, GIS, and drone surveying to ensure that each design is smart, functional, and built to last. Our strength lies not just in execution, but in collaboration with stakeholders and communities.
+                                </p>
+                            </div>
 
-            {/* Experience Timeline Section */}
-            <div className="mt-24">
+                            <div className="w-full flex justify-center mt-8 ">
+                                <div className="flex flex-wrap justify-center gap-7">
+                                    {[
+                                        { label: "Experience", value: `${expCount}+`, sub: "" },
+                                        { label: "Services", value: `${servCount}+`, sub: "" },
+                                        { label: "Working with", value: `${peopleCount}+`, sub: "people" },
+                                    ].map((item, i) => (
+                                        <div
+                                            key={i}
+                                            className="bg-[var(--primary-red)] border-2 border-[var(--primary-red)] rounded-xl flex flex-col justify-center items-center p-6 w-44 h-44 text-center"
+                                        >
+                                            {/* 🏷 Label */}
+                                            <p className="text-xl font-semibold text-white mb-1">
+                                                {item.label}
+                                            </p>
+
+                                            {/* 🔢 Number */}
+                                            <h3 className="text-4xl font-bold text-white mb-1">
+                                                {item.value}
+                                            </h3>
+
+                                            {/* 🔡 Subtext (optional) */}
+                                            {item.sub && (
+                                                <p className="text-sm text-white">{item.sub}</p>
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </motion.div>
+
+
+                    </div>
+                </div>
+            </section>
+            <div className="mb-24">
                 <ExperienceSection />
             </div>
-
-            {/* Extra Image Before Values */}
-            <motion.div
-                className="my-12 rounded-2xl overflow-hidden shadow-xl"
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8 }}
-            >
-                <Image
-                    src="/images/about-values.jpg" // Replace this with your own image
-                    alt="Team collaboration or site supervision"
-                    width={1200}
-                    height={500}
-                    className="w-full h-auto object-cover"
-                />
-            </motion.div>
 
             {/* Values Section */}
             <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.6 }}
-                className="mt-16"
+                className="text-center mt-20 px-4"
             >
-                <h3 className="text-3xl font-semibold text-[var(--primary-green)] mb-10 text-center">
+                <h3 className="text-3xl font-semibold text-[var(--primary-green)] mb-12">
                     What We Stand For
                 </h3>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
                     {[
                         {
                             icon: "🔍",
                             title: "Precision",
-                            desc: "Every plan, drawing, and report is crafted with accuracy and purpose.",
+                            desc: "Every detail matters. We ensure that all plans, designs, and reports are produced with accuracy and purpose to deliver high-performing outcomes.",
                         },
                         {
                             icon: "♻️",
                             title: "Sustainability",
-                            desc: "Our projects follow green principles, ensuring energy and material efficiency.",
+                            desc: "We build with responsibility. Our designs minimize environmental impact, maximizing energy and resource efficiency for long-term sustainability.",
                         },
                         {
                             icon: "🤝",
                             title: "Collaboration",
-                            desc: "We partner closely with clients and communities to deliver shared success.",
+                            desc: "We believe in teamwork. By engaging clients and communities, we create solutions that reflect shared visions and deliver real-world value.",
                         },
                         {
                             icon: "📐",
                             title: "Innovation",
-                            desc: "Our use of emerging tech sets us apart in the modern consultancy landscape.",
+                            desc: "We embrace technology. From BIM to drone-based surveys, our tools empower smart, future-ready design and execution.",
                         },
                         {
                             icon: "🏗️",
                             title: "Turnkey Execution",
-                            desc: "We offer end-to-end planning, design, and implementation services.",
+                            desc: "From planning to project completion, our team delivers all-in-one solutions with seamless coordination and reliable timelines.",
                         },
                         {
                             icon: "🚀",
                             title: "Scalability",
-                            desc: "We design solutions that grow with you — adaptable, flexible, and future-ready.",
-                        }
+                            desc: "We grow with you. Our modular and adaptable systems are designed for long-term evolution across sectors and scales.",
+                        },
                     ].map((item, index) => (
                         <div
                             key={index}
-                            className="bg-white p-6 rounded-xl border border-gray-200 shadow hover:shadow-md transition"
+                            className="bg-white w-full max-w-sm mx-auto p-6 rounded-2xl border border-gray-100 shadow-[0_8px_24px_0_rgba(156,18,5,0.25)] hover:shadow-[0_12px_28px_0_rgba(156,18,5,0.3)] transition-all duration-300 flex flex-col items-center text-center"
                         >
-                            <div className="text-3xl mb-3">{item.icon}</div>
-                            <h4 className="text-xl font-semibold text-[var(--primary-green)] mb-2">
+                            <div className="text-5xl mb-4">{item.icon}</div>
+                            <h4 className="text-xl font-bold text-[var(--primary-green)] mb-3">
                                 {item.title}
                             </h4>
-                            <p className="text-gray-700 text-sm">{item.desc}</p>
+                            <p className="text-gray-600 text-base leading-relaxed">
+                                {item.desc}
+                            </p>
                         </div>
                     ))}
                 </div>
             </motion.div>
 
-        </div>
+
+
+
+
+
+
+        </>
     );
 }

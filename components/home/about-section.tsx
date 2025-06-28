@@ -1,19 +1,23 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { motion, useMotionValue, useTransform, animate, useInView } from "framer-motion";
 import Image from "next/image";
 
 export default function AboutSection() {
+    const pathname = usePathname();
+    const isAboutPage = pathname === "/about";
+
     const count = useMotionValue(1);
     const displayCount = useTransform(count, (latest) => `${Math.round(latest)}+`);
 
     const sectionRef = useRef(null);
-    const isInView = useInView(sectionRef, { margin: "-100px" }); // triggers each time in view
+    const isInView = useInView(sectionRef, { margin: "-100px" });
 
     useEffect(() => {
         if (isInView) {
-            count.set(1); // reset before re-animating
+            count.set(1);
             animate(count, 9, {
                 duration: 3,
                 ease: "easeInOut",
@@ -40,20 +44,23 @@ export default function AboutSection() {
                     </h2>
 
                     <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-                        <strong>OM Educom</strong> is a multidisciplinary engineering and architectural consultancy based in Tezpur, Assam. For nearly a decade, we’ve transformed ideas into reality with a focus on sustainability, cutting-edge innovation, and precision delivery.
+                        <strong>OM Educom</strong> is a leading multidisciplinary engineering and architectural consultancy firm based in Tezpur, Assam. For nearly a decade, we have delivered tailored, reliable, and future-ready solutions to public and private sector clients across the region.
                     </p>
 
                     <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-                        From urban infrastructure to smart digital solutions, our team of architects, engineers, and consultants delivers turnkey services tailored to client needs. We champion collaborative work, future-forward thinking, and honest relationships.
+                        Our firm thrives on transforming complex ideas into sustainable infrastructure. From community housing and urban development to institutional planning and structural redesign—we’re known for our versatility, dedication, and innovation.
                     </p>
 
-                    <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        href="/about"
-                        className="inline-block px-6 py-3 rounded-full text-white text-base font-medium shadow-lg transition bg-[var(--primary-green)] hover:bg-[#AC0214]"
-                    >
-                        Learn More About Us
-                    </motion.a>
+                    {/* Only show this button on home page */}
+                    {!isAboutPage && (
+                        <motion.a
+                            whileHover={{ scale: 1.05 }}
+                            href="/about"
+                            className="inline-block px-6 py-3 rounded-full text-white text-base font-medium shadow-lg transition bg-[var(--primary-green)] hover:bg-[#AC0214]"
+                        >
+                            Learn More About Us
+                        </motion.a>
+                    )}
                 </motion.div>
 
                 {/* Image + Counter Section */}
@@ -67,7 +74,7 @@ export default function AboutSection() {
                     <div className="relative w-[90%] h-[420px] rounded-2xl overflow-hidden border border-gray-300 shadow-md">
                         <Image
                             src="/images/hero/engineering.jpg"
-                            alt="Team Banner"
+                            alt="Engineering Team"
                             fill
                             className="object-cover rounded-2xl"
                         />
@@ -83,7 +90,7 @@ export default function AboutSection() {
                         />
                     </div>
 
-                    {/* Experience Counter Badge */}
+                    {/* Counter Badge */}
                     <motion.div
                         className="absolute top-4 right-6 w-[20%] h-[20%] bg-[var(--primary-green)] rounded-xl flex flex-col items-center justify-center shadow-lg"
                         initial={{ scale: 0 }}
@@ -97,7 +104,6 @@ export default function AboutSection() {
                             {displayCount}
                         </motion.span>
                     </motion.div>
-
                 </motion.div>
             </div>
         </section>
