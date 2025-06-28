@@ -1,10 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
 import ExperienceSection from "./experience-section";
 import AboutSection from "@/components/home/about-section";
 import Link from "next/link";
@@ -35,36 +34,33 @@ export default function AboutPage() {
 
     return (
         <>
-            {/* ✅ Hero Section */}
+            {/* Hero Section */}
             <section
-                className="relative w-full min-h-[80vh] bg-cover bg-center flex flex-col-reverse lg:flex-row items-center justify-between text-white overflow-hidden mt-16"
+                className="relative w-full overflow-hidden min-h-[80vh] bg-cover bg-center flex flex-col lg:flex-row items-center justify-between text-white mt-16 px-4 sm:px-8"
                 style={{ backgroundImage: "url('/images/banner/about-hero.jpg')" }}
             >
+                {/* Brown Overlay */}
                 <div className="absolute inset-0 bg-[var(--primary-brown)] bg-opacity-40 z-10" />
+
+                {/* Red diagonal shape */}
                 <div
-                    className="absolute inset-0 z-20 hidden sm:block"
+                    className="absolute inset-0 z-20"
                     style={{
-                        clipPath: 'polygon(100% 0%, 70% 0%, 80% 100%, 100% 100%)',
-                        backgroundColor: '#D91111',
+                        clipPath: "polygon(100% 0%, 70% 0%, 80% 100%, 100% 100%)",
+                        backgroundColor: "#D91111",
                     }}
                 />
-                <div className="absolute z-30 right-4 sm:right-[7%] top-1/2 transform -translate-y-1/2 w-[240px] sm:w-[380px] md:w-[480px] lg:w-[580px]">
-                    <Image
-                        src="/images/about/about.webp"
-                        alt="Junction Graphic"
-                        width={580}
-                        height={480}
-                        className="w-full h-auto drop-shadow-lg"
-                    />
-                </div>
-                <div className="relative z-30 px-4 sm:px-10 max-w-3xl text-left mt-20 lg:mt-0 ml-0 sm:ml-10 lg:ml-16">
+
+                {/* ✅ TEXT SECTION — comes first in DOM */}
+                <div className="relative z-30 w-full lg:w-1/2 px-4 sm:px-10 mt-10 sm:mt-20 text-left order-1 lg:order-none">
                     <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold leading-[1.05] mb-4">
                         <div>Building Futures,</div>
                         <div className="text-[var(--primary-gold)]">Empowering</div>
                         <div>Communities</div>
                     </h2>
                     <p className="text-base sm:text-lg md:text-xl leading-relaxed mb-6">
-                        OM Educom is more than a consultancy we're a team of passionate engineers, architects, and strategists shaping the landscape of North East India with precision and purpose.
+                        OM Educom is more than a consultancy—we're a team of passionate engineers,
+                        architects, and strategists shaping the landscape of North East India with precision and purpose.
                     </p>
                     <Link
                         href="/services"
@@ -85,15 +81,36 @@ export default function AboutPage() {
                         </span>
                     </Link>
                 </div>
+
+                {/* ✅ IMAGE SECTION — comes second in DOM */}
+                <div className="relative z-30 w-full sm:w-auto mt-4 sm:mt-0  flex justify-center lg:justify-end order-2 lg:order-none translate-x-15 md:translate-x-0 lg:mr-15">
+                    <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl px-4 sm:px-0 lg:h-[600px] flex items-center">
+                        <Image
+                            src="/images/about/about.webp"
+                            alt="Junction Graphic"
+                            width={800}
+                            height={700}
+                            className="w-full h-full object-cover rounded-lg drop-shadow-lg"
+                            priority
+                        />
+                    </div>
+                </div>
+
+
+
+
+
             </section>
+
+
+
 
             <AboutSection />
 
-            {/* ✅ Image + Boxes + Text Section */}
+            {/* Image + Counters + Text Section */}
             <section className="py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-8">
                     <div className="grid md:grid-cols-2 items-start gap-12" ref={counterRef}>
-                        {/* Left Column: Image + Boxes */}
                         <div>
                             <motion.div
                                 initial={{ opacity: 0, x: -40 }}
@@ -111,7 +128,6 @@ export default function AboutPage() {
                             </motion.div>
                         </div>
 
-                        {/* Right Column: Content */}
                         <motion.div
                             initial={{ opacity: 0, x: 40 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -134,41 +150,28 @@ export default function AboutPage() {
                                 </p>
                             </div>
 
-                            <div className="w-full flex justify-center mt-8 ">
-                                <div className="flex flex-wrap justify-center gap-7">
-                                    {[
-                                        { label: "Experience", value: `${expCount}+`, sub: "" },
-                                        { label: "Services", value: `${servCount}+`, sub: "" },
-                                        { label: "Working with", value: `${peopleCount}+`, sub: "people" },
+                            <div className="w-full flex justify-center mt-8">
+                                <div className="flex flex-wrap justify-center gap-6 sm:gap-7">
+                                    {[{ label: "Experience", value: `${expCount}+`, sub: "" },
+                                    { label: "Services", value: `${servCount}+`, sub: "" },
+                                    { label: "Working with", value: `${peopleCount}+`, sub: "people" },
                                     ].map((item, i) => (
                                         <div
                                             key={i}
-                                            className="bg-[var(--primary-red)] border-2 border-[var(--primary-red)] rounded-xl flex flex-col justify-center items-center p-6 w-44 h-44 text-center"
+                                            className="bg-[var(--primary-red)] border-2 border-[var(--primary-red)] rounded-xl flex flex-col justify-center items-center p-4 sm:p-6 w-36 sm:w-44 h-36 sm:h-44 text-center"
                                         >
-                                            {/* 🏷 Label */}
-                                            <p className="text-xl font-semibold text-white mb-1">
-                                                {item.label}
-                                            </p>
-
-                                            {/* 🔢 Number */}
-                                            <h3 className="text-4xl font-bold text-white mb-1">
-                                                {item.value}
-                                            </h3>
-
-                                            {/* 🔡 Subtext (optional) */}
-                                            {item.sub && (
-                                                <p className="text-sm text-white">{item.sub}</p>
-                                            )}
+                                            <p className="text-xl font-semibold text-white mb-1">{item.label}</p>
+                                            <h3 className="text-4xl font-bold text-white mb-1">{item.value}</h3>
+                                            {item.sub && <p className="text-sm text-white">{item.sub}</p>}
                                         </div>
                                     ))}
                                 </div>
                             </div>
                         </motion.div>
-
-
                     </div>
                 </div>
             </section>
+
             <div className="mb-24">
                 <ExperienceSection />
             </div>
@@ -178,67 +181,49 @@ export default function AboutPage() {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.6 }}
-                className="text-center mt-20 px-4"
+                className="text-center mt-20 px-4 sm:px-6"
             >
                 <h3 className="text-3xl font-semibold text-[var(--primary-green)] mb-12">
                     What We Stand For
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-7xl mx-auto">
-                    {[
-                        {
-                            icon: "🔍",
-                            title: "Precision",
-                            desc: "Every detail matters. We ensure that all plans, designs, and reports are produced with accuracy and purpose to deliver high-performing outcomes.",
-                        },
-                        {
-                            icon: "♻️",
-                            title: "Sustainability",
-                            desc: "We build with responsibility. Our designs minimize environmental impact, maximizing energy and resource efficiency for long-term sustainability.",
-                        },
-                        {
-                            icon: "🤝",
-                            title: "Collaboration",
-                            desc: "We believe in teamwork. By engaging clients and communities, we create solutions that reflect shared visions and deliver real-world value.",
-                        },
-                        {
-                            icon: "📐",
-                            title: "Innovation",
-                            desc: "We embrace technology. From BIM to drone-based surveys, our tools empower smart, future-ready design and execution.",
-                        },
-                        {
-                            icon: "🏗️",
-                            title: "Turnkey Execution",
-                            desc: "From planning to project completion, our team delivers all-in-one solutions with seamless coordination and reliable timelines.",
-                        },
-                        {
-                            icon: "🚀",
-                            title: "Scalability",
-                            desc: "We grow with you. Our modular and adaptable systems are designed for long-term evolution across sectors and scales.",
-                        },
-                    ].map((item, index) => (
+                    {[{
+                        icon: "🔍",
+                        title: "Precision",
+                        desc: "Every detail matters. We ensure that all plans, designs, and reports are produced with accuracy and purpose to deliver high-performing outcomes."
+                    }, {
+                        icon: "♻️",
+                        title: "Sustainability",
+                        desc: "We build with responsibility. Our designs minimize environmental impact, maximizing energy and resource efficiency for long-term sustainability."
+                    }, {
+                        icon: "🤝",
+                        title: "Collaboration",
+                        desc: "We believe in teamwork. By engaging clients and communities, we create solutions that reflect shared visions and deliver real-world value."
+                    }, {
+                        icon: "📐",
+                        title: "Innovation",
+                        desc: "We embrace technology. From BIM to drone-based surveys, our tools empower smart, future-ready design and execution."
+                    }, {
+                        icon: "🏗️",
+                        title: "Turnkey Execution",
+                        desc: "From planning to project completion, our team delivers all-in-one solutions with seamless coordination and reliable timelines."
+                    }, {
+                        icon: "🚀",
+                        title: "Scalability",
+                        desc: "We grow with you. Our modular and adaptable systems are designed for long-term evolution across sectors and scales."
+                    }].map((item, index) => (
                         <div
                             key={index}
                             className="bg-white w-full max-w-sm mx-auto p-6 rounded-2xl border border-gray-100 shadow-[0_8px_24px_0_rgba(156,18,5,0.25)] hover:shadow-[0_12px_28px_0_rgba(156,18,5,0.3)] transition-all duration-300 flex flex-col items-center text-center"
                         >
                             <div className="text-5xl mb-4">{item.icon}</div>
-                            <h4 className="text-xl font-bold text-[var(--primary-green)] mb-3">
-                                {item.title}
-                            </h4>
-                            <p className="text-gray-600 text-base leading-relaxed">
-                                {item.desc}
-                            </p>
+                            <h4 className="text-xl font-bold text-[var(--primary-green)] mb-3">{item.title}</h4>
+                            <p className="text-gray-600 text-base leading-relaxed">{item.desc}</p>
                         </div>
                     ))}
                 </div>
             </motion.div>
-
-
-
-
-
-
-
         </>
     );
 }

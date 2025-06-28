@@ -143,7 +143,8 @@ export default function ServicesPage() {
     return (
         <div className="w-full">
             {/* Hero Section */}
-            <section className="relative bg-[var(--primary-red)] py-50 px-4 sm:px-10 text-white overflow-hidden">
+            <section className="relative bg-[var(--primary-red)] pt-[80px] pb-20 px-4 sm:px-10 text-white overflow-hidden">
+
                 {/* Blurred Background Image */}
                 <div className="absolute inset-0 w-full h-full z-0 justify-center items-center">
                     <Image

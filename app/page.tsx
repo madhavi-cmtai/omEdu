@@ -9,7 +9,7 @@ import BlogShowcase from "@/components/home/blogs-section";
 
 export default function Home() {
   return (
-    <div className="w-full min-h-[50vh] sm:min-h-[70vh] lg:min-h-[80vh]">
+    <div >
       <HeroSection />
       <AboutSection/>
       <WhyChooseUs/>

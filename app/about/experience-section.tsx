@@ -41,11 +41,12 @@ export default function ExperienceSection() {
 
             {/* Timeline */}
             <div className="relative mx-auto max-w-5xl">
-                {/* Central vertical line */}
+                {/* Central vertical line - now visible even on mobile */}
                 <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[var(--primary-pink)] z-0" />
 
                 {/* Cards */}
-                <div className="relative z-10 space-y-2 sm:space-y-3 md:space-y-4">
+                <div className="relative z-10 space-y-11 sm:space-y-4">
+
                     {experienceData.map((item, i) => {
                         const isLeft = i % 2 === 0;
                         return (
@@ -57,15 +58,13 @@ export default function ExperienceSection() {
                                 className={`flex flex-col sm:flex-row items-center ${isLeft ? "sm:justify-start" : "sm:justify-end"
                                     } relative`}
                             >
-                                {/* Dot on line */}
-                                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[var(--primary-red)] border-4 border-white shadow z-10" />
+                                {/* Dot on line - always visible */}
+                                <div className="absolute left-1/2 top-8 sm:top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-[var(--primary-red)] border-4 border-white shadow z-10" />
+
                                 <div
-                                    className={`w-full sm:w-1/2 ${isLeft ? "sm:pr-12 text-right" : "sm:pl-12 text-left"
-                                        }`}
+                                    className={`w-full sm:w-1/2 px-4 ${isLeft ? "sm:pr-12 text-right" : "sm:pl-12 text-left"}`}
                                 >
-                                    <div
-                                        className="bg-white p-6 rounded-2xl border border-gray-200 shadow-[0_10px_30px_var(--primary-green)]"
-                                    >
+                                    <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-[0_10px_30px_var(--primary-green)]">
                                         <div className="text-center mb-3">
                                             <div className="inline-block text-white bg-[var(--primary-green)] px-4 py-1 rounded-full text-lg font-bold shadow">
                                                 {item.year}
@@ -84,7 +83,7 @@ export default function ExperienceSection() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={inView ? { opacity: 1, scale: 1 } : {}}
                     transition={{ duration: 0.6, delay: 1.6 }}
-                    className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 z-10"
+                    className="absolute bottom-[-8rem] left-1/2 transform -translate-x-1/2 z-10"
                 >
                     <div className="bg-[var(--primary-green)] text-white px-8 py-5 rounded-xl shadow-lg text-center w-56">
                         <div className="text-4xl font-bold mb-1">9+</div>
