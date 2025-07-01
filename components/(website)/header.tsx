@@ -19,14 +19,13 @@ const navLinks = [
 
 export default function Header() {
     const pathname = usePathname();
-    const isPadded = pathname === "/" || pathname === "/about";
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
         <header className="fixed top-0 left-0 w-full z-50 bg-white shadow-md">
-            <div className="max-w-screen-xl mx-auto flex items-center justify-between py-4 px-6 md:px-12">
+            <div className="max-w-screen-xl mx-auto flex items-center justify-between py-4 px-4 sm:px-6 md:px-12">
                 {/* Left: Logo */}
-                <Link href="/" className="flex items-center gap-2">
+                <Link href="/" className="flex items-center gap-2 shrink-0">
                     <Image
                         src="/logo.png"
                         alt="Logo"
@@ -37,14 +36,14 @@ export default function Header() {
                 </Link>
 
                 {/* Center: Desktop Navigation */}
-                <nav className="hidden md:flex gap-15 ml-52">
+                <nav className="hidden md:flex flex-wrap items-center gap-8 xl:gap-12 lg:ml-24 xl:ml-36">
                     {navLinks.map((link) => {
                         const isActive = pathname === link.href;
                         return (
                             <Link
                                 key={link.name}
                                 href={link.href}
-                                className={`relative text-base font-bold transition-colors duration-300 ${isActive
+                                className={`relative text-base font-bold whitespace-nowrap transition-colors duration-300 ${isActive
                                     ? "text-[#790F1B] font-extrabold underline underline-offset-4"
                                     : "text-black hover:text-[#AC0214] hover:underline underline-offset-4"
                                     }`}
@@ -55,12 +54,11 @@ export default function Header() {
                     })}
                 </nav>
 
-                {/* Right: CTA and Toggle */}
+                {/* Right: CTA + Mobile Toggle */}
                 <div className="flex items-center gap-4">
-                    {/* CTA: Always visible */}
                     <Link
                         href="/contact"
-                        className="inline-flex items-center gap-2 text-white font-bold text-base px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-[#9b1c2f] to-[#ff6b6b] hover:from-[#b6203a] hover:to-[#ff4c4c] transition-shadow shadow-lg"
+                        className="inline-flex items-center gap-2 text-white font-bold text-base px-4 sm:px-6 py-2 sm:py-3 rounded-full bg-gradient-to-r from-[#9b1c2f] to-[#ff6b6b] hover:from-[#b6203a] hover:to-[#ff4c4c] transition-shadow shadow-lg whitespace-nowrap"
                     >
                         <Image
                             src="/images/vector.png"
@@ -69,26 +67,19 @@ export default function Header() {
                             height={20}
                             className="object-contain"
                         />
-                        <span >Contact Us</span>
+                        <span>Contact Us</span>
                     </Link>
 
-                    {/* Toggle Button: Mobile only */}
-                    <div className="md:hidden flex items-center">
-                        <button
-                            onClick={() => setMenuOpen(!menuOpen)}
-                            className={`text-[#AC0214] ${isPadded ? "mr-10" : ""}`}
-                        >
+                    {/* Mobile menu icon */}
+                    <div className="md:hidden flex items-center text-[#AC0214]">
+                        <button onClick={() => setMenuOpen(!menuOpen)}>
                             {menuOpen ? <X size={28} /> : <Menu size={28} />}
                         </button>
                     </div>
-
-
-
-
                 </div>
             </div>
 
-            {/* Mobile Navigation */}
+            {/* Mobile Navigation Dropdown */}
             {menuOpen && (
                 <div className="md:hidden px-6 pb-4 flex flex-col gap-4 bg-white shadow-md">
                     {navLinks.map((link) => {
@@ -110,5 +101,6 @@ export default function Header() {
                 </div>
             )}
         </header>
+
     );
 }

@@ -158,7 +158,7 @@ export default function ServiceShowcase() {
     return (
         <section className="relative py-20 px-4 sm:px-10 bg-white w-full">
             {/* Background Image inside content */}
-            <div className="relative w-full rounded-none overflow-hidden">
+            <div className="relative max-w-7xl mx-auto w-full rounded-none overflow-hidden">
                 <div className="absolute inset-0 -z-10">
                     <Image
                         src="/images/bg-blue.jpg"
@@ -187,7 +187,7 @@ export default function ServiceShowcase() {
                                     transition={{ duration: 0.4 }}
                                     className="rounded-2xl overflow-hidden  transition-all bg-white"
                                     style={{
-                                        boxShadow: "0 10px 40px rgba(250, 2, 20, 0.3)",
+                                        boxShadow: "0 10px 40px rgba(200, 2, 20, 0.3)",
                                     }}
                                     onMouseEnter={(e) =>
                                     (e.currentTarget.style.boxShadow =

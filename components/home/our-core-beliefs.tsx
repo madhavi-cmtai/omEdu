@@ -60,7 +60,7 @@ export default function WhyChooseUs() {
                         <div
                             key={index}
                             style={{
-                                boxShadow: "0 10px 40px rgba(221, 15, 27, 0.5)",
+                                boxShadow: "0 10px 40px rgba(200, 15, 27, 0.5)",
                                 transition: "box-shadow 0.3s ease",
                             }}
                             onMouseEnter={(e) =>

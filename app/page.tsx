@@ -9,15 +9,15 @@ import BlogShowcase from "@/components/home/blogs-section";
 
 export default function Home() {
   return (
-    <div >
+    <div className="w-full overflow-x-hidden">
       <HeroSection />
-      <AboutSection/>
-      <WhyChooseUs/>
-      <ServicesSection/>
-      <ProjectShowcase/>
-      <BlogShowcase/>
-      <TestimonialSection/>
-      <GetInTouch/>
+      <AboutSection />
+      <WhyChooseUs />
+      <ServicesSection />
+      <ProjectShowcase />
+      <BlogShowcase />
+      <TestimonialSection />
+      <GetInTouch />
     </div>
   );
 }

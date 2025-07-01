@@ -28,13 +28,14 @@ export default function HeroSection() {
 
                     {/* Buttons */}
                     <div className="mt-8 flex flex-wrap justify-center lg:justify-start gap-4">
-                        <button className="px-6 py-3 font-semibold rounded-md bg-white text-[var(--primary-green)] hover:bg-[var(--primary-red)] hover:text-white transition-colors duration-300">
+                        <button className="px-6 py-3 font-semibold rounded-md bg-white text-[var(--primary-green)] hover:bg-[var(--primary-red)] hover:text-white focus:bg-[var(--primary-red)] focus:text-white active:bg-[var(--primary-red)] active:text-white transition-colors duration-300">
                             Explore Services
                         </button>
-                        <button className="px-6 py-3 font-semibold rounded-md border border-white text-white hover:bg-white hover:text-[var(--primary-red)] transition-colors duration-300">
+                        <button className="px-6 py-3 font-semibold rounded-md border border-white text-white hover:bg-white hover:text-[var(--primary-red)] focus:bg-white focus:text-[var(--primary-red)] active:bg-white active:text-[var(--primary-red)] transition-colors duration-300">
                             Contact Us
                         </button>
                     </div>
+
                 </div>
 
                 {/* Right Image Card */}

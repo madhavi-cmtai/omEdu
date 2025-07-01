@@ -19,17 +19,37 @@ const Footer = () => {
             <div className="max-w-7xl mx-auto text-center mb-10">
                 <h3 className="text-xl font-semibold mb-4 text-[var(--primary-red)]">Connect with us</h3>
                 <div className="flex justify-center gap-6">
-                    <a href="https://wa.me/919531170448" target="_blank" rel="noopener noreferrer">
-                        <MessageCircle className="w-5 h-5 hover:text-green-600 transition" />
+                    <a
+                        href="https://wa.me/919531170448"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group"
+                    >
+                        <MessageCircle className="w-5 h-5 text-white transition group-hover:text-green-600 group-active:text-green-600" />
                     </a>
-                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-                        <Facebook className="w-5 h-5 hover:text-blue-600 transition" />
+                    <a
+                        href="https://www.facebook.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group"
+                    >
+                        <Facebook className="w-5 h-5 text-white transition group-hover:text-blue-600 group-active:text-blue-600" />
                     </a>
-                    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-                        <Linkedin className="w-5 h-5 hover:text-sky-600 transition" />
+                    <a
+                        href="https://www.linkedin.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group"
+                    >
+                        <Linkedin className="w-5 h-5 text-white transition group-hover:text-sky-600 group-active:text-sky-600" />
                     </a>
-                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
-                        <Instagram className="w-5 h-5 hover:text-pink-500 transition" />
+                    <a
+                        href="https://www.instagram.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group"
+                    >
+                        <Instagram className="w-5 h-5 text-white transition group-hover:text-pink-500 group-active:text-pink-500" />
                     </a>
                 </div>
             </div>
@@ -48,15 +68,15 @@ const Footer = () => {
                 <div>
                     <h4 className="text-lg font-bold text-[var(--primary-red)] mb-3">Contact</h4>
                     <ul className="space-y-3 text-gray-300">
-                        <li className="flex items-start hover:text-red-600">
+                        <li className="flex items-start transition hover:text-red-600 active:text-red-600">
                             <MapPin className="w-4 h-4 mr-2 text-red-600" />
                             Tezpur, Assam, India
                         </li>
-                        <li className="flex items-start hover:text-red-600">
+                        <li className="flex items-start transition hover:text-red-600 active:text-red-600">
                             <Phone className="w-4 h-4 mr-2 text-red-500" />
                             +91 9531170448
                         </li>
-                        <li className="flex items-start hover:text-red-600">
+                        <li className="flex items-start transition hover:text-red-600 active:text-red-600">
                             <Mail className="w-4 h-4 mr-2 text-red-500" />
                             omeducom@outlook.com
                         </li>
@@ -73,10 +93,26 @@ const Footer = () => {
                 <div>
                     <h4 className="text-lg font-bold text-[var(--primary-red)] mb-3">Navigation</h4>
                     <ul className="space-y-2 text-gray-300">
-                        <li><Link href="/" className="hover:text-red-600">Home</Link></li>
-                        <li><Link href="/about" className="hover:text-red-600">About Us</Link></li>
-                        <li><Link href="/services" className="hover:text-red-600">Services</Link></li>
-                        <li><Link href="/contact" className="hover:text-red-600">Contact</Link></li>
+                        <li>
+                            <Link href="/" className="transition hover:text-red-600 active:text-red-600">
+                                Home
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/about" className="transition hover:text-red-600 active:text-red-600">
+                                About Us
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/services" className="transition hover:text-red-600 active:text-red-600">
+                                Services
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/contact" className="transition hover:text-red-600 active:text-red-600">
+                                Contact
+                            </Link>
+                        </li>
                     </ul>
                 </div>
 
@@ -85,12 +121,12 @@ const Footer = () => {
                     <h4 className="text-lg font-bold text-[var(--primary-red)] mb-3">Legal</h4>
                     <ul className="space-y-2 text-gray-300">
                         <li>
-                            <Link href="/privacy-policy" className="hover:text-red-600">
+                            <Link href="/privacy-policy" className="transition hover:text-red-600 active:text-red-600">
                                 Privacy Policy
                             </Link>
                         </li>
                         <li>
-                            <Link href="/terms-and-conditions" className="hover:text-red-600">
+                            <Link href="/terms-and-conditions" className="transition hover:text-red-600 active:text-red-600">
                                 Terms & Conditions
                             </Link>
                         </li>

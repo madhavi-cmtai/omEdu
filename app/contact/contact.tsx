@@ -28,7 +28,7 @@ export default function Contact() {
     };
 
     return (
-        <div className="min-h-screen py-16 px-4 sm:px-8 max-w-3xl mx-auto bg-white">
+        <div className="min-h-screen py-16 px-4 sm:px-8 max-w-3xl mx-auto bg-white mt-9">
             <motion.h1
                 className="text-4xl sm:text-5xl font-bold text-center text-[var(--primary-green)] mb-10"
                 initial={{ opacity: 0, y: 30 }}
@@ -107,7 +107,7 @@ export default function Contact() {
                     />
                 </div>
 
-                <Button type="submit" className="bg-[var(--primary-pink)] text-white hover:bg-pink-700">
+                <Button type="submit" className="bg-[var(--primary-pink)] text-white hover:bg-[var(--primary-brown)]">
                     Submit
                 </Button>
             </motion.form>
